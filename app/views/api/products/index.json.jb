@@ -1,3 +1,4 @@
+# File previously named all_products.json.jb
 @products.map do |product|
   {
     name: product.name,
