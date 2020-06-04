@@ -6,5 +6,6 @@
   is_discounted?: product.is_discounted?,
   image_url: product.image_url,
   description: product.description,
+  in_stock: product.in_stock,
   id: product.id
 }
