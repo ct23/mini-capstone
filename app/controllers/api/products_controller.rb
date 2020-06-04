@@ -32,19 +32,28 @@ class Api::ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find_by(id: params['id'])
-    render 'show_product.json.jb'
+    id = params['id']
+    if @product = Product.find_by(id: id)
+      render 'show_product.json.jb'
+    else
+      render json: { error: "Product with id #{id} does not exist."}, status: :unprocessable_entity
+    end
   end
 
   def create
-    @product = Product.create(
+    @product = Product.new(
       name: params['name'],
       price: params['price'],
       image_url: params['image_url'],
       description: params['description'],
       in_stock: params['in_stock']
     )
-    render 'show_product.json.jb'
+    if @product.save
+      render 'show_product.json.jb'
+    else
+      render json: {message: "Product invalid",
+                    errors: @product.errors.full_messages}, status: :unprocessable_entity # status: 422
+    end
   end
 
   def update
@@ -58,16 +67,23 @@ class Api::ProductsController < ApplicationController
     @product.description = params[:description] || @product.description
     @product.in_stock = params[:instock] || @product.in_stock
     # save product
-    @product.save
-    # render a view
-    render 'show_product.json.jb'
+    if @product.save
+      # render a view
+      render 'show_product.json.jb'
+    else
+      render json: {message: "Product invalid",
+        errors: @product.errors.full_messages}, status: :unprocessable_entity # status: 422
+    end
   end
 
   def destroy
     id = params['id']
-    @product = Product.find_by(id: id)
-    @product.destroy
-    render json: {message: "Product id #{id} was deleted."}
+    if @product = Product.find_by(id: id)
+      @product.destroy
+      render json: {message: "Product id #{id} was deleted."}
+    else
+      render json: { error: "Product with id #{id} does not exist."}, status: :unprocessable_entity
+    end
   end
 
 end
