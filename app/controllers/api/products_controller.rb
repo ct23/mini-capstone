@@ -67,7 +67,8 @@ class Api::ProductsController < ApplicationController
       price: params['price'],
       image_url: params['image_url'],
       description: params['description'],
-      in_stock: params['in_stock']
+      in_stock: params['in_stock'],
+      supplier_id: params['supplier_id']
     )
     if @product.save
       render 'show_product.json.jb'
@@ -87,6 +88,7 @@ class Api::ProductsController < ApplicationController
     @product.image_url = params[:image_url] || @product.image_url
     @product.description = params[:description] || @product.description
     @product.in_stock = params[:instock] || @product.in_stock
+    @product.supplier_id = params[:supplier_id] || @ product.supplier_id
     # save product
     if @product.save
       # render a view
