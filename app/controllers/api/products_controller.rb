@@ -78,7 +78,7 @@ class Api::ProductsController < ApplicationController
 
   def destroy
     id = params['id']
-    if @product = Product.find_by(id: id)
+    if (@product = Product.find_by(id: id))
       @product.destroy
       render json: {message: "Product id #{id} was deleted."}
     else
