@@ -28,12 +28,33 @@ class Api::ProductsController < ApplicationController
   # Rewriting above methods with RESTful methods
   def index
     @products = Product.all
+
+    if (search = params[:search])                               # If search query (name) is provided, filter index by that
+      @products = @products.where("name iLIKE ?", "%#{search}%")
+    end
+
+    if (params[:discount] == "true")                            # If parameter 'discount' is true, show items under $10 only
+      @products = @products.where("price < ?", "10")              
+    elsif (params[:discount] == "false")
+      @products = @products.where("price >= ?", "10")           # If params discount = false, show items = or above $10 only
+    end
+
+    if (params[:sort] == "price")                               # If params sort=price
+      if (params[:sort_order] == "desc")                        # If params sort=price and sort_order=desc
+        @products = @products.order(price: :desc)                 # Sort by price descending
+      else
+        @products = @products.order(:price)                     # If params sort = price, sort by price ascending
+      end
+    else
+      @products = @products.order(:id)                          # Sort index by id, if no order specified in params
+    end
+
     render 'index.json.jb'
   end
 
   def show
     id = params['id']
-    if @product = Product.find_by(id: id)
+    if (@product = Product.find_by(id: id))
       render 'show_product.json.jb'
     else
       render json: { error: "Product with id #{id} does not exist."}, status: :unprocessable_entity
