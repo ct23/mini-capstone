@@ -29,4 +29,7 @@ class Product < ApplicationRecord
   #   Supplier.find_by(id: supplier_id)
   # end
 
+  # Association method
+  has_many :images
+
 end
