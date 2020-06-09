@@ -3,6 +3,7 @@
   price: product.price,
   tax: product.tax,
   total: product.total,
+  supplier: product.supplier.name,
   is_discounted?: product.is_discounted?,
   image_url: product.image_url,
   description: product.description,

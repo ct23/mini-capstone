@@ -22,4 +22,11 @@ class Product < ApplicationRecord
     return ('%.2f' % (tax + price)).to_i
   end
 
+  # Association method
+  belongs_to :supplier
+
+  # def supplier
+  #   Supplier.find_by(id: supplier_id)
+  # end
+
 end

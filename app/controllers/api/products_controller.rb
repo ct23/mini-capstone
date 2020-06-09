@@ -88,7 +88,7 @@ class Api::ProductsController < ApplicationController
     @product.image_url = params[:image_url] || @product.image_url
     @product.description = params[:description] || @product.description
     @product.in_stock = params[:instock] || @product.in_stock
-    @product.supplier_id = params[:supplier_id] || @ product.supplier_id
+    @product.supplier_id = params[:supplier_id] || @product.supplier_id
     # save product
     if @product.save
       # render a view
