@@ -5,7 +5,7 @@
   total: product.total,
   supplier: product.supplier.name,
   is_discounted?: product.is_discounted?,
-  images: product.image_url,
+  images: product.images,
   description: product.description,
   in_stock: product.in_stock,
   id: product.id
