@@ -28,7 +28,8 @@ Rails.application.routes.draw do
 
     post "/images" => "images#create"
 
-    post "/users" => "users#create"
+    post "/users" => "users#create"         # create a new user
+    post "/sessions" => "sessions#create"   # for users to log in
 
   end
 
