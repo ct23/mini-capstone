@@ -32,4 +32,6 @@ class Product < ApplicationRecord
   # Association method
   has_many :images
 
+  has_many :orders
+
 end

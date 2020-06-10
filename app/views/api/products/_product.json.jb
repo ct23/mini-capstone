@@ -8,5 +8,5 @@
   images: product.images,
   description: product.description,
   in_stock: product.in_stock,
-  id: product.id
+  id: product.id,
 }
