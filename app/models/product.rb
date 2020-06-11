@@ -2,7 +2,7 @@ class Product < ApplicationRecord
   validates :name, length: { minimum: 2, maximum: 100 }, uniqueness: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :description, length: { in: 10...500 }
-  validates :image_url, format: { with: URI.regexp }
+  # validates :image_url, format: { with: URI.regexp }
 
 
   def is_discounted?
