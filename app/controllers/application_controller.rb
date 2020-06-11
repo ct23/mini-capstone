@@ -27,4 +27,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Check to see if there is a user logged in, and if user is admin
+  def authenticate_admin
+    unless current_user && current_user.authenticate_admin
+      render json: {}, status: :unauthorized
+    end
+  end
+
 end

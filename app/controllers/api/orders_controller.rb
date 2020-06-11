@@ -1,4 +1,8 @@
 class Api::OrdersController < ApplicationController
+
+  # Validate that user is logged in before executing any method:
+  before_action :authenticate_user
+
   def create
     product = Product.find_by(id: params[:product_id])
     calc_subtotal = (product.price) * (params[:quantity].to_i)

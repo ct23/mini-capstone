@@ -25,6 +25,10 @@ class Api::ProductsController < ApplicationController
   #   @product = Product.find_by(id: product_id)
   #   render 'product.json.jb'
 
+  # Check to authorize admin for all except index and show (anyone can do these)
+  before_action :authenticate_admin, except: [:index, :show]
+  # before_action :authenticate_admin, only: [:create, :destroy, :update]    # Does same thing as line above
+
   # Rewriting above methods with RESTful methods
   def index
     @products = Product.all
