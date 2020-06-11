@@ -31,6 +31,10 @@ Rails.application.routes.draw do
     post "/users" => "users#create"         # create a new user
     post "/sessions" => "sessions#create"   # for users to log in
 
+    post "/orders" => "orders#create"       # Create a new order
+    get "/orders" => "orders#index"         # Show all orders FOR CURRENT USER
+    get "/orders/:id" => "orders#show"          # Show specific order
+
   end
 
 end
