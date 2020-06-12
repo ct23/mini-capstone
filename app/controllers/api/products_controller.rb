@@ -33,6 +33,12 @@ class Api::ProductsController < ApplicationController
   def index
     @products = Product.all
 
+    # If category parameter is passed, look up by category
+    if params[:category]
+      cat = Category.find_by(name: params[:category])
+      @products = cat.products
+    end
+    
     if (search = params[:search])                               # If search query (name) is provided, filter index by that
       @products = @products.where("name iLIKE ?", "%#{search}%")
     end
