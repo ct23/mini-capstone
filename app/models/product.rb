@@ -31,7 +31,8 @@ class Product < ApplicationRecord
 
   # Association methods
   has_many :images
-  has_many :orders
+  has_many :carted_products
+  has_many :orders, through: :carted_products
   has_many :product_categories
 
   has_many :categories, through: :product_categories
@@ -39,5 +40,9 @@ class Product < ApplicationRecord
   # def categories
   #   product_categories.map { | product_category | product_category.category }
   # end
+
+  def category_names
+    categories.map { |category| category.name }
+  end
 
 end
