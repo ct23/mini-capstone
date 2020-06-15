@@ -32,7 +32,7 @@ class Product < ApplicationRecord
   # Association methods
   has_many :images
   has_many :carted_products
-  has_many :orders, through: :carted_products
+  # has_many :orders, through: :carted_products (don't need)
   has_many :product_categories
 
   has_many :categories, through: :product_categories
