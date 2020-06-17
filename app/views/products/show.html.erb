@@ -1,0 +1,17 @@
+<h2><%= @product.name %></h2>
+<h4><%= @product.description %></h4>
+<% if @product.images.any? %>
+    <% @product.images.each do |image| %>
+      <img src="<%=image.url%>" width = 150>
+    <% end %>
+  <% end %>
+<h4><%= number_to_currency(@product.price) %></h4>
+<h6>
+    Categories:
+    <% @product.category_names.map do |category_name| %>
+      <%= category_name %>,
+    <% end %>
+    <br>
+    Supplier: <%= @product.supplier.name %>
+  </h6>
+<a href="/products/<%=@product.id%>/edit">Edit Product</a>
