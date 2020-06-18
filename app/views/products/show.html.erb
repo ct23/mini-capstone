@@ -14,4 +14,15 @@
     <br>
     Supplier: <%= @product.supplier.name %>
   </h6>
-<a href="/products/<%=@product.id%>/edit">Edit Product</a>
+
+<div>
+  <!-- Edit and delete actions -->
+  <a href="/products/<%=@product.id%>/edit">Edit Product</a>
+  <a href="/products/<%=@product.id%>/" data-method="delete">Delete Product</a>
+  <!-- Can also use form action: -->
+  <form action="/products/<%= @product.id %> " method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit">Delete</button>
+  </form>
+</div>
+
