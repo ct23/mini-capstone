@@ -42,3 +42,6 @@ gem 'http'
 gem 'rack-cors'
 gem 'jb'
 gem 'jwt'
+
+# To use seed dump gem
+gem 'seed_dump'
